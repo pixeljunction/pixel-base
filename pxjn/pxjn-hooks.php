@@ -47,9 +47,4 @@ function pxjn_before_footer() {
 	do_action( 'pxjn_before_footer' );
 }
 
-/* usually used after the footer is displayed just after the closing footer tag */
-function pxjn_after_footer() {
-	do_action( 'pxjn_after_footer' );
-}
-
 ?>
