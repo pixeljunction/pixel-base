@@ -130,9 +130,23 @@
 /* adds our own dashboard widget as a welcome screen item */
 	if ( ! function_exists( 'pxjn_wp_dashboard_widget' ) ) { // check it doesn't exist in child theme
 		function pxjn_wp_dashboard_widget() {
-		
-			/* echo out the contents of our widget, in this case text */
-			echo '<p>The Pixel Junction Team would like to thank you for using us for your website.</p>';
+			
+			/* setup a template file to use for the dashboard widget */
+			$pxjn_dashboard_widget_templatename = 'pxjn/pxjn-dashboard-widget.php';
+			
+			/* locate the template from above in the theme */
+			$pxjn_dashboard_widget_path = locate_template( $pxjn_dashboard_widget_templatename );
+			
+			/* check whether the theme has this template or not */
+			if( empty( $pxjn_dashboard_widget_path ) ) {
+				
+				/* if the path is empy - lets load some default content from the parent theme */
+				$pxjn_dashboard_widget_path = TEMPLATEPATH . '/pxjn/pxjn-dashboard-widget.php';
+				
+			}
+			
+			/* include the template file containig the widget content */
+			include_once( $pxjn_dashboard_widget_path );
 		}
 	}
 	
