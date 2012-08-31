@@ -31,54 +31,63 @@
 	}
 
 /* pxjn comments function */
-	function pxjn_comments( $comment, $args, $depth ) {
-		$GLOBALS['comment'] = $comment;
-		switch ( $comment->comment_type ) :
-			case '' :
-		?>
-		<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-			<div id="comment-<?php comment_ID(); ?>">
-                <div class="comment-author vcard">
-                    <?php echo get_avatar( $comment, 40 ); ?>
-                    <?php printf( __( '%s <span class="says">says:</span>', 'pj' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-                </div><!-- .comment-author .vcard -->
-                <?php if ( $comment->comment_approved == '0' ) : ?>
-                    <em><?php _e( 'Your comment is awaiting moderation.', 'pj' ); ?></em>
-                    <br />
-                <?php endif; ?>
-                <div class="comment-meta commentmetadata"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
-                    <?php
-                        /* translators: 1: date, 2: time */
-                        printf( __( '%1$s at %2$s', 'pj' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'pj' ), ' ' );
-                    ?>
-                </div><!-- .comment-meta .commentmetadata -->
-                <div class="comment-body"><?php comment_text(); ?></div>
-                <div class="reply">
-                    <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-                </div><!-- .reply -->
-            </div><!-- #comment-##  -->
-		<?php
-				break;
-			case 'pingback'  :
-			case 'trackback' :
-		?>
-		<li class="post pingback">
-			<p><?php _e( 'Pingback:', 'pj' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __('(Edit)', 'pj'), ' ' ); ?></p>
-		<?php
-				break;
-		endswitch;
+	if ( ! function_exists( 'pxjn_comments' ) ) { // check it doesn't exist in child theme
+		function pxjn_comments( $comment, $args, $depth ) {
+			$GLOBALS['comment'] = $comment;
+			switch ( $comment->comment_type ) :
+				case '' :
+			?>
+			<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+				<div id="comment-<?php comment_ID(); ?>">
+	                <div class="comment-author vcard">
+	                    <?php echo get_avatar( $comment, 40 ); ?>
+	                    <?php printf( __( '%s <span class="says">says:</span>', 'pj' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
+	                </div><!-- .comment-author .vcard -->
+	                <?php if ( $comment->comment_approved == '0' ) : ?>
+	                    <em><?php _e( 'Your comment is awaiting moderation.', 'pj' ); ?></em>
+	                    <br />
+	                <?php endif; ?>
+	                <div class="comment-meta commentmetadata"><a href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>">
+	                    <?php
+	                        /* translators: 1: date, 2: time */
+	                        printf( __( '%1$s at %2$s', 'pj' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)', 'pj' ), ' ' );
+	                    ?>
+	                </div><!-- .comment-meta .commentmetadata -->
+	                <div class="comment-body"><?php comment_text(); ?></div>
+	                <div class="reply">
+	                    <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+	                </div><!-- .reply -->
+	            </div><!-- #comment-##  -->
+			<?php
+					break;
+				case 'pingback'  :
+				case 'trackback' :
+			?>
+			<li class="post pingback">
+				<p><?php _e( 'Pingback:', 'pj' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __('(Edit)', 'pj'), ' ' ); ?></p>
+			<?php
+					break;
+			endswitch;
+		}
 	}
 
 /* multiple page post navigation function (taken from the twentyeleven theme) */
 	if ( ! function_exists( 'pxjn_content_nav' ) ) { // check it doesn't exist in child theme
 		function pxjn_content_nav() {
 			global $wp_query;
-			if ( $wp_query->max_num_pages > 1 ) : ?>
-				<div class="navigation">
-					<div class="nav-alignleft"><?php next_posts_link('&laquo; Older Entries') ?></div>
-					<div class="nav-alignright"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
-				</div>
-			<?php endif;
+			
+			/* if the maximum pages we have in our query is more than 1 */
+			if ( $wp_query->max_num_pages > 1 ) {
+			
+				/* setup our content nav output stored as variable */
+				$pxjn_content_nav_output = '<div class="navigation">';
+					$pxjn_content_nav_output .= '<div class="nav-alignleft">' . next_posts_link('&laquo; Older Entries') . '</div><div class="nav-alignright">' . previous_posts_link('Newer Entries &raquo;') . '</div>';
+				$pxjn_content_nav_output .= '<div>';
+				
+				/* return our output, first running it through a filter so it can be changed in a plugin or child theme */
+				return apply_filters( 'pxjn_content_nav_output', $pxjn_content_nav_output );
+				
+			}
 		}
 	}
 
