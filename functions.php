@@ -50,7 +50,7 @@ if ( ! function_exists( 'pxjn_theme_setup' ) ) {
 		add_action( 'widgets_init', 'pxjn_register_widgets' );
 		
 		/* adds the editor stylesheet */
-		add_editor_style('/mdw/css/editor-style.css');
+		add_editor_style( 'editor-style.css' );
 		
 		/* Add default posts and comments RSS feed links to head */
 		add_theme_support( 'automatic-feed-links' );
