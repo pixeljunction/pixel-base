@@ -126,13 +126,15 @@
 	}
 
 /* custom search form function to work with get_search_form */
-	function pxjn_search_form( $pxjn_form ) {
-	    $pxjn_form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
-	    <label class="screen-reader-text" for="s">' . __('Search for:', 'pxjn') . '</label>
-	    <input type="text" value="' . get_search_query() . '" name="s" id="s" />
-	    <input type="image" src="' . get_stylesheet_directory_uri() . '/images/search-icon.png" id="search-button" value="'. esc_attr__('Search') .'" />
-	    </form>';
-	    return $pxjn_form;
+	if ( ! function_exists( 'pxjn_search_form' ) ) { // check it doesn't exist in child theme
+		function pxjn_search_form( $pxjn_form ) {
+		    $pxjn_form = '<form role="search" method="get" id="searchform" action="' . home_url( '/' ) . '" >
+		    <label class="screen-reader-text" for="s">' . __('Search for:', 'pxjn') . '</label>
+		    <input type="text" value="' . get_search_query() . '" name="s" id="s" />
+		    <input type="image" src="' . get_stylesheet_directory_uri() . '/images/search-icon.png" id="search-button" value="'. esc_attr__('Search') .'" />
+		    </form>';
+		    return $pxjn_form;
+		}
 	}
 	add_filter( 'get_search_form', 'pxjn_search_form' );
 
