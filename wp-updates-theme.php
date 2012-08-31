@@ -2,7 +2,7 @@
 /*
 WPUpdates Theme Updater Class
 http://wp-updates.com
-v1.0
+v1.1
 
 Example Usage:
 require_once('wp-updates-theme.php');
@@ -55,9 +55,9 @@ if( !class_exists('WPUpdatesThemeUpdater') ) {
     			'body' => array(
     				'action' => $action, 
     				'request' => serialize($args),
-    				'api-key' => md5(get_bloginfo('url'))
+    				'api-key' => md5(home_url())
     			),
-    			'user-agent' => 'WordPress/' . $wp_version . '; ' . get_bloginfo('url')
+    			'user-agent' => 'WordPress/'. $wp_version .'; '. home_url()
     		);	
     	}
 
