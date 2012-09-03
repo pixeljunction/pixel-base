@@ -11,7 +11,7 @@ if ( ! function_exists( 'pxjn_register_widgets' ) ) {
 		/* lets register the sidebar - this can be repeated for additional sidebars */
 		register_sidebar(
 			array(
-				'id' => 'pxjn_widget_id',
+				'id' => 'pxjn_posts_widgets',
 				'name' => __( 'Posts Sidebar', 'pxjn' ),
 				'description' => __( 'Sidebar used for the posts sidebars.', 'pxjn' ),
 				'before_widget' => '<div id="%1$s" class="pxjn_widget %2$s">',
