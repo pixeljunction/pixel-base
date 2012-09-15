@@ -5,9 +5,17 @@
 	<html <?php language_attributes(); ?>>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
-	<?php if ( is_singular() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	} ?>
+	<?php
+		
+		/* check to see if thise page is singular and we are using threaded comments */
+		if ( is_singular() && get_option( 'thread_comments' ) ) {
+			
+			/* there we need to add the comment reply js file to the head */
+			wp_enqueue_script( 'comment-reply' );
+			
+		}
+		
+	?>
 	<?php wp_head(); ?>
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); echo '?' . filemtime( get_stylesheet_directory() . '/style.css'); ?>" type="text/css" media="screen, projection" />
 </head>
