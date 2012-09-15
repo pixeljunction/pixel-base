@@ -1,1 +1,1 @@
-<p>does this work?</p>
+<p>Thank you for choosing us to create your website. We hope you like your new website and please do not hesitate to contact us regarding any issues you may have.</p>
