@@ -64,8 +64,8 @@
 			/* get the current users ID and assign to variable */
 			$current_user = wp_get_current_user(); $current_user_id = $current_user->ID;
 			
-			/* check for user ID number 1 - the main admin */
-			if( $current_user_id != '1' ) {
+			/* if the current user ID is greater than 2 */
+			if( $current_user_id > 2 ) {
 			
 				/* remove menus that are not required */
 				remove_menu_page( 'tools.php');
@@ -121,6 +121,7 @@
 			unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_recent_drafts']); // recent drafts widget
 			unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_primary']); // primary rss box
 			unset($wp_meta_boxes['dashboard']['side']['core']['dashboard_secondary']); // secondary rss box
+			unset($wp_meta_boxes['dashboard']['normal']['core']['dashboard_recent_comments']); // remove recent comments
 		}
 	}
 	
