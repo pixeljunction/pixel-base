@@ -82,7 +82,7 @@
 				/* setup our content nav output stored as variable */
 				$pxjn_content_nav_output = '<div class="navigation">';
 					$pxjn_content_nav_output .= '<div class="nav-alignleft">' . next_posts_link('&laquo; Older Entries') . '</div><div class="nav-alignright">' . previous_posts_link('Newer Entries &raquo;') . '</div>';
-				$pxjn_content_nav_output .= '<div>';
+				$pxjn_content_nav_output .= '</div>';
 				
 				/* return our output, first running it through a filter so it can be changed in a plugin or child theme */
 				return apply_filters( 'pxjn_content_nav_output', $pxjn_content_nav_output );
