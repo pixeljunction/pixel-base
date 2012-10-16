@@ -138,4 +138,39 @@
 	}
 	add_filter( 'get_search_form', 'pxjn_search_form' );
 
-?>
+/* add logo to the login screen if present in child theme folder */
+	if ( ! function_exists( 'pxjn_login_head' ) ) { // check it doesn't exist in child theme
+		function pxjn_login_head() {
+		
+			/* check whether a login logo exists in the child theme */
+			if( file_exists( STYLESHEETPATH . '/images/login-logo.png' ) ) {
+			
+				echo '
+					<style>
+					.login h1 a {
+						background-image: url('.get_stylesheet_directory_uri() . '/images/login-logo.png);
+						background-size: 274px 65px;
+						width: 326px;
+						height: 67px;
+					}
+					</style>
+				';
+			
+			} else {
+				
+				echo '
+					<style>
+					.login h1 a {
+						background-image: url('.get_template_directory_uri() . '/images/login-logo.png);
+						background-size: 274px 65px;
+						width: 326px;
+						height: 67px;
+					}
+					</style>
+				';
+				
+			}
+			
+		}
+	}
+	add_action('login_head', 'pxjn_login_head');
