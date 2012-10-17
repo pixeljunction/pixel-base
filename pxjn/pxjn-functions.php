@@ -137,6 +137,17 @@
 		}
 	}
 	add_filter( 'get_search_form', 'pxjn_search_form' );
+	
+/* create function for size of login logo */
+	if ( ! function_exists( 'pxjn_login_logo_height' ) ) { // check it doesn't exist in child theme
+		function pxjn_login_logo_height() {
+		
+			$pxjn_logo_height = ' 65px';
+			
+			return $pxjn_logo_height;
+		
+		}
+	}
 
 /* add logo to the login screen if present in child theme folder */
 	if ( ! function_exists( 'pxjn_login_head' ) ) { // check it doesn't exist in child theme
@@ -149,9 +160,8 @@
 					<style>
 					.login h1 a {
 						background-image: url('.get_stylesheet_directory_uri() . '/images/login-logo.png);
-						background-size: 274px 65px;
-						width: 326px;
-						height: 67px;
+						background-size: 274px '. pxjn_login_logo_height() .';
+						height: '. pxjn_login_logo_height() .';
 					}
 					</style>
 				';
@@ -161,10 +171,9 @@
 				echo '
 					<style>
 					.login h1 a {
-						background-image: url('.get_template_directory_uri() . '/images/login-logo.png);
+						background-image: url('.admin_url( 'images/wordpress-logo.png') .');
 						background-size: 274px 65px;
-						width: 326px;
-						height: 67px;
+						height: 65px;
 					}
 					</style>
 				';
