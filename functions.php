@@ -18,6 +18,20 @@ if( ! function_exists( 'optionsframework_init' ) ) {
 /* load the metaboxes template file */
 load_template( get_template_directory() . '/metaboxes.php' );
 
+/* load the widgets template file function */
+load_template( get_template_directory() . '/pxjn/widget-functions.php' );
+
+/***************************************************************
+* Function pxjn_menus()
+* Defines menus to be used in the theme
+***************************************************************/
+function pxjn_menus() {
+	
+	/* register a main nav menu - can be repeated for other menus */
+	register_nav_menu( 'pxjn_main_menu', __( 'Main Menu' ) );
+
+}
+
 /***************************************************************
 * Function pxjn_theme_setup()
 * Theme setup function for changing options for media etc. and
@@ -34,7 +48,7 @@ function pxjn_theme_setup() {
 	/* images sizes can be added here using - http://codex.wordpress.org/Function_Reference/add_image_size */
 	
 	/* add your nav menus function to the 'init' action hook */
-	add_action( 'init', 'pxjn_menu' );
+	add_action( 'init', 'pxjn_menus' );
 	
 	/* add your sidebars function to the 'widgets_init' action hook */
 	add_action( 'widgets_init', 'pxjn_register_widgets' );
@@ -45,51 +59,34 @@ function pxjn_theme_setup() {
 	/* Add default posts and comments RSS feed links to head */
 	add_theme_support( 'automatic-feed-links' );
 	
-	/* add custom header theme support */
-	if ( ! function_exists( 'pxjn_custom_header_args' ) ) { // check this function is not declared in child theme
-		
-		/* build function to declare custom header arguments */
-		function pxjn_custom_header_args() {
-			$pxjn_custom_header_defaults = array(
-				'default-image'          => '',
-				'random-default'         => false,
-				'width'                  => 960,
-				'height'                 => 130,
-				'flex-height'            => false,
-				'flex-width'             => false,
-				'default-text-color'     => '',
-				'header-text'            => false,
-				'uploads'                => true,
-				'wp-head-callback'       => '',
-				'admin-head-callback'    => '',
-				'admin-preview-callback' => '',
-			);
-			return $pxjn_custom_header_defaults;
-		}
-	}
+	$pxjn_custom_header_defaults = array(
+		'default-image'          => '',
+		'random-default'         => false,
+		'width'                  => 960,
+		'height'                 => 130,
+		'flex-height'            => false,
+		'flex-width'             => false,
+		'default-text-color'     => '',
+		'header-text'            => false,
+		'uploads'                => true,
+		'wp-head-callback'       => '',
+		'admin-head-callback'    => '',
+		'admin-preview-callback' => '',
+	);
 	
 	/* hook the default arguments into the add theme support call and actually add the custom header support */
-	add_theme_support( 'custom-header', pxjn_custom_header_args() );
+	add_theme_support( 'custom-header', $pxjn_custom_header_defaults );
 	
-	/* add custom background theme support */
-	if ( ! function_exists( 'pxjn_custom_background_args' ) ) { // check this function is not declared in child theme
-		
-		/* build function to declare custom header arguments */
-		function pxjn_custom_background_args() {
-			$pxjn_custom_background_defaults = array(
-				'default-color'          => 'FFFFFF',
-				'default-image'          => '',
-				'wp-head-callback'       => '_custom_background_cb',
-				'admin-head-callback'    => '',
-				'admin-preview-callback' => ''
-			);
-			return $pxjn_custom_background_defaults;
-		}
-				
-	}
+	$pxjn_custom_background_defaults = array(
+		'default-color'          => 'FFFFFF',
+		'default-image'          => '',
+		'wp-head-callback'       => '_custom_background_cb',
+		'admin-head-callback'    => '',
+		'admin-preview-callback' => ''
+	);
 	
 	/* hook the default arguments into the add theme support call and actually add the custom background support */
-	add_theme_support( 'custom-background', pxjn_custom_background_args() );
+	add_theme_support( 'custom-background', $pxjn_custom_background_defaults );
 
 	/****** theme defaults are set and message outputted ******/
 	
@@ -133,3 +130,5 @@ function pxjn_theme_setup() {
 	}
 	
 } // end pxjn_theme_setup function
+
+add_action( 'after_setup_theme', 'pxjn_theme_setup' );
