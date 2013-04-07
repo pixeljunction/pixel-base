@@ -1,11 +1,8 @@
 <?php
-/**
- * The Header for our theme.
- *
- * @package WordPress
- * @subpackage pxjn-framework
- * @since 2.0
- */
+/*
+* This is the header template file for the theme. This build
+* the <head> section of the theme.
+*/
 ?><!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7" <?php language_attributes(); ?>>
