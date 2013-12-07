@@ -1,25 +1,7 @@
 <?php
 
-/* sets up the theme options framework */
-if( ! function_exists( 'optionsframework_init' ) ) {
-	
-	/* define the options framework locations */
-	define( 'OPTIONS_FRAMEWORK', get_template_directory() . '/pxjn/options/' );
-	define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/pxjn/options/' );		
-	
-	/* load the options framework code */
-	load_template(OPTIONS_FRAMEWORK . 'options-framework.php');
-	
-	/* temporary fix for options framework & theme customiser http://wptheming.com/2012/07/options-framework-theme-customizer/ */
-	load_template( get_template_directory() . '/options.php' );
-	
-}
-
-/* load the metaboxes template file */
-load_template( get_template_directory() . '/metaboxes.php' );
-
 /* load the widgets template file function */
-load_template( get_template_directory() . '/pxjn/widget-functions.php' );
+load_template( get_template_directory() . '/functions/widgets.php' );
 
 /***************************************************************
 * Function pxjn_menus()
