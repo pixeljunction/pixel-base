@@ -98,7 +98,7 @@ function pxjn_theme_setup() {
 		/* display an admin message to let the user know what is going on. */
 		$pxjn_msg = '
 		<div class="error">
-			<p>The ' . get_option( 'current_theme' ) . 'theme has changed your WordPress default <a href="' . admin_url() . 'options-general.php" title="See Settings">settings</a>. These changes were made to optimise WordPress for the ' . get_option( 'current_theme' ) . ' theme.</p>
+			<p>The ' . get_option( 'current_theme' ) . ' theme has changed your WordPress default <a href="' . admin_url() . 'options-general.php" title="See Settings">settings</a>. These changes were made to optimise WordPress for the ' . get_option( 'current_theme' ) . ' theme.</p>
 		</div>';
 		add_action( 'admin_notices', $c = create_function( '', 'echo "' . addcslashes( $pxjn_msg, '"' ) . '";' ) );
 	}
