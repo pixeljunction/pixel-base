@@ -115,3 +115,21 @@ function pxjn_theme_setup() {
 } // end pxjn_theme_setup function
 
 add_action( 'after_setup_theme', 'pxjn_theme_setup' );
+
+/***************************************************************
+* Function pxjn_scripts_styles()
+* Enqueue the necessary scripts and styles for the theme
+***************************************************************/
+function pxjn_scripts_styles() {
+	
+	/* enqueue the main theme stylesheet */
+	wp_enqueue_style( 'pxlbase_style', get_stylesheet_uri() );
+	
+	/* if this is single post view, comments are open and threaded comments enable - enqueue comments reply script */
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+
+}
+
+add_action( 'wp_enqueue_scripts', 'pxjn_scripts_styles' );
