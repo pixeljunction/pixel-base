@@ -14,16 +14,17 @@ function pxjn_menus() {
 
 }
 
+/* set the $content_width for things such as video embeds usually width of themes 'content' div */
+if ( ! isset( $content_width ) ) {
+	$content_width = 640; /* pixels */
+}
+
 /***************************************************************
 * Function pxjn_theme_setup()
 * Theme setup function for changing options for media etc. and
 * adding theme support
 ***************************************************************/
 function pxjn_theme_setup() {
-
-	/* set the $content_width for things such as video embeds usually width of themes 'content' div */
-	if ( ! isset( $content_width ) )
-		$content_width = 610; // usually set to the max width of your post container
 			
 	/* adds featured image support */
 	add_theme_support( 'post-thumbnails' );
