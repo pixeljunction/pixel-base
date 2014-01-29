@@ -35,3 +35,24 @@
         do_action( 'pxjn_after_body' );
 	
 	?>
+	
+	<header class="main">
+	
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+		
+			<h1 class="menu-toggle">Menu</h1>
+
+			<?php
+				
+				/* set some args for the main menu */
+				$pxjn_main_menu_args = array(
+					'theme_location' => 'primary',
+				);
+				
+				wp_nav_menu( $pxjn_main_menu_args );
+			
+			?>
+			
+		</nav><!-- #site-navigation -->
+	
+	</header>

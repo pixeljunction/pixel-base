@@ -10,7 +10,7 @@ load_template( get_template_directory() . '/functions/widgets.php' );
 function pxjn_menus() {
 	
 	/* register a main nav menu - can be repeated for other menus */
-	register_nav_menu( 'pxjn_main_menu', __( 'Main Menu' ) );
+	register_nav_menu( 'primary', __( 'Primary Menu' ) );
 
 }
 
@@ -123,7 +123,10 @@ add_action( 'after_setup_theme', 'pxjn_theme_setup' );
 function pxjn_scripts_styles() {
 	
 	/* enqueue the main theme stylesheet */
-	wp_enqueue_style( 'pxlbase_style', get_stylesheet_uri() );
+	wp_enqueue_style( 'pxjn_style', get_stylesheet_uri() );
+	
+	/* enqueue the navigation js for smaller screens menu fix */
+	wp_enqueue_script( 'pxjn_navigation', get_template_directory_uri() . '/scripts/navigation.js', array(), '20120206', true );
 	
 	/* if this is single post view, comments are open and threaded comments enable - enqueue comments reply script */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
