@@ -9,7 +9,7 @@ get_header();
 
 ?>
 
-	<main id="primary" class="content">
+	<main id="primary" class="content" role="main">
 	
 		<?php
 		

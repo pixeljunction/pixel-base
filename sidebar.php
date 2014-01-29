@@ -1,4 +1,4 @@
-<div id="secondary" class="sidebar">
+<div id="secondary" class="sidebar" role="complementary">
 
 	<p>Sidebar content here!</p>
 
