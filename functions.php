@@ -3,6 +3,9 @@
 /* load the widgets template file function */
 load_template( get_template_directory() . '/functions/widgets.php' );
 
+/* load the custom header */
+//load_template( get_template_directory() . '/functions/custom-header.php' );
+
 /***************************************************************
 * Function pxjn_menus()
 * Defines menus to be used in the theme
@@ -42,44 +45,17 @@ function pxjn_theme_setup() {
 	/* Add default posts and comments RSS feed links to head */
 	add_theme_support( 'automatic-feed-links' );
 	
-	$pxjn_custom_header_defaults = array(
-		'default-image'          => '',
-		'random-default'         => false,
-		'width'                  => 960,
-		'height'                 => 130,
-		'flex-height'            => false,
-		'flex-width'             => false,
-		'default-text-color'     => '',
-		'header-text'            => false,
-		'uploads'                => true,
-		'wp-head-callback'       => '',
-		'admin-head-callback'    => '',
-		'admin-preview-callback' => '',
-	);
+	/***************************************************************
+	/* theme defaults are set and message outputted
+	***************************************************************/
 	
-	/* hook the default arguments into the add theme support call and actually add the custom header support */
-	add_theme_support( 'custom-header', $pxjn_custom_header_defaults );
-	
-	$pxjn_custom_background_defaults = array(
-		'default-color'          => 'FFFFFF',
-		'default-image'          => '',
-		'wp-head-callback'       => '_custom_background_cb',
-		'admin-head-callback'    => '',
-		'admin-preview-callback' => ''
-	);
-	
-	/* hook the default arguments into the add theme support call and actually add the custom background support */
-	add_theme_support( 'custom-background', $pxjn_custom_background_defaults );
-
-	/****** theme defaults are set and message outputted ******/
-	
-	/* First we check to see if our default theme settings have been applied */
+	/* first we check to see if our default theme settings have been applied */
 	$pxjn_the_theme_status = get_option( 'theme_setup_status' );
 	
-	/* If the theme has not yet been used we want to run our default settings */
+	/* if the theme has not yet been used we want to run our default settings */
 	if ( $pxjn_the_theme_status !== '1' ) {
 	
-		/* Setup Default WordPress settings */
+		/* setup default wordPress settings */
 		$pxjn_core_settings = array(
 			'image_default_link_type' => '', // images link to nothing by default
 			'thumbnail_crop' => 1, // set wordpress to crop thumbnails always
@@ -114,7 +90,7 @@ function pxjn_theme_setup() {
 	
 } // end pxjn_theme_setup function
 
-add_action( 'after_setup_theme', 'pxjn_theme_setup' );
+add_action( 'after_setup_theme', 'pxjn_theme_setup', 10 );
 
 /***************************************************************
 * Function pxjn_scripts_styles()
