@@ -48,7 +48,7 @@ body {
 	background: #fff;
 }
 a {
-	color:;
+	color: ;
 	text-decoration: none;
 }
 a:hover {
@@ -152,22 +152,25 @@ a:hover {
 /* post and page styles
 -------------------------------------------------------------- */
 .entry-content p {
-	font-size: ;
-	margin-bottom: ;
+	font-size: 1.3em;
+	margin-bottom: 2%;
 	line-height: 1.5;
 }
 .entry-content ol,
 .entry-content ul {
-	font-size: ;
+	margin-bottom: 2%;
+	margin-left: 2%;
+	padding-left: 2%;
 }
 .entry-content li {
-	font-size: ;
+	font-size: 1.3em;
 	line-height: 1.5;
-	margin-bottom: ;
+	margin-bottom: 2%;
 }
 .entry-content li li,
 .entry-content li li li,
-.entry-content li li li li {
+.entry-content li li li li
+.entry-content li li li li li {
 	font-size: inherit;
 }
 .entry-content h2,
@@ -175,7 +178,7 @@ a:hover {
 .entry-content h4,
 .entry-content h5,
 .entry-content h6 {
-	
+	margin-bottom: 2%;
 }
 .entry-content h2 {
 	font-size: ;
@@ -224,6 +227,7 @@ footer.main {
 -------------------------------------------------------------- */
 .clearfix {
 	clear: both;
+	display: block;
 }
 
 /* media queries
