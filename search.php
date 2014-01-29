@@ -1,10 +1,7 @@
 <?php
 
 /*
-* This is the main index template of this theme. The fallback
-* template used when others are not included. This is needed
-* for the theme to work.
-
+* This is search page template
 * lets start by getting the header template file
 */
 
@@ -19,6 +16,15 @@ get_header();
 			/* check whether we have posts */
 			if( have_posts() ) {
 			
+				?>
+				
+				<header class="page-header">
+				
+					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'pxjn' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				
+				</header><!-- .page-header -->
+				
+				<?php
 				/**************************************************************************
                 * Hook pxjn_before_loop
                 **************************************************************************/
@@ -27,8 +33,8 @@ get_header();
 				/* start the loop */
 				while( have_posts() ) : the_post();
 				
-					/* get the post format specific loop template */
-					get_template_part( 'loops/content', get_post_format() );
+					/* get the search loop template */
+					get_template_part( 'loops/content', 'search' );
 				
 				/* end the loop */
 				endwhile;
@@ -41,8 +47,14 @@ get_header();
                 /* output core post nav if available */
                 if( function_exists( 'pxlcore_content_nav' ) )
                 	echo pxlcore_content_nav();
+			
+			/* no post are found in the search */
+			} else {
 				
-			}
+				/* load the template part for no content */
+				get_template_part( 'loops/content', 'none' );
+				
+			} // end if have posts
 		
 		?>
 	
